@@ -126,6 +126,12 @@ $(function() {
     })
   }
 
+  // 通过代理的形式，为 form-add 表单绑定 submit 事件
+
+  $('tbody').on('click', '.btn-edit', function(e) {
+    // console.log(1);
+ 
+  })
   // 通过代理的形式，为删除按钮绑定点击事件处理函数
   $('tbody').on('click', '.btn-delete', function() {
     // 获取删除按钮的个数，用删除按钮判断还有几条数据

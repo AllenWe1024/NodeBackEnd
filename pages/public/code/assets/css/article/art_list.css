@@ -8,3 +8,7 @@ body {
   padding: 15px;
   background-color: #f2f3f5;
 }
+
+.button .btn-edit a{
+  color: #f2f3f5;
+}

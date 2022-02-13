@@ -3,8 +3,14 @@ const express = require('express')
 // 创建 express 的服务器实例
 const app = express()
 const joi = require('joi')
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const timeout = require('connect-timeout');
 
 
+// HOST 指目标地址 PORT 服务端口
+const HOST = 'http://localhost', PORT = '10003';
+// 超时时间
+const TIME_OUT = 30 * 1e3;
 // 导入 cors 中间件
 const cors = require('cors')
 // 将 cors 注册为全局中间件
@@ -56,6 +62,24 @@ const articleRouter = require('./router/article')
 // 为文章的路由挂载统一的访问前缀 /my/article
 app.use('/my/article', articleRouter)
 
+// 设置超时 返回超时响应
+app.use(timeout(TIME_OUT));
+app.use((req, res, next) => {
+  if (!req.timedout) next();
+});
+
+// 反向代理（这里把需要进行反代的路径配置到这里即可）
+// eg:将/api 代理到 ${HOST}/api
+// app.use(createProxyMiddleware('/api', { target: HOST }));
+// 自定义代理规则
+app.use(createProxyMiddleware('/', {
+  target: HOST, // target host
+  changeOrigin: true, // needed for virtual hosted sites
+  ws: true, // proxy websockets
+  // pathRewrite: {
+  //   '^/': '', // rewrite path
+  // }
+}));
 
 // 错误中间件
 app.use(function(err, req, res, next) {
@@ -68,6 +92,7 @@ app.use(function(err, req, res, next) {
 })
 
 // 调用 app.listen 方法，指定端口号并启动web服务器
-app.listen(3007, function() {
-  console.log('api server running at http://127.0.0.1:3007')
+app.listen(10004, function() {
+  console.log('api server running at http://127.0.0.1:10004')
 })
+
