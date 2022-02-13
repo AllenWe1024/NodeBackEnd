@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "connect-timeout": "^1.9.0",
+    "express": "^4.17.2",
+    "http-proxy-middleware": "^2.0.3"
   }
 }
