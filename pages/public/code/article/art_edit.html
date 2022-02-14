@@ -16,13 +16,12 @@
     <div class="layui-card-header">编辑文章</div>
     <div class="layui-card-body">
       <!-- 发布文章的表单 -->
-      <form class="layui-form" id="form-pub">
+      <form class="layui-form" id="form-pub" lay-filter="form-pub">
         <!-- 第一行 -->
         <div class="layui-form-item">
-          <label class="layui-form-label">文章标题</label>
+          <label class="layui-form-label ">文章标题</label>
           <div class="layui-input-block">
-            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
-              class="layui-input" />
+            <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" id="articleTitle" class="layui-input" />
           </div>
         </div>
         <!-- 第二行 -->
@@ -71,8 +70,10 @@
           </div>
         </div>
       </form>
+
     </div>
   </div>
+
 
   <!-- 分类的模板结构 -->
   <script type="text/html" id="tpl-cate">

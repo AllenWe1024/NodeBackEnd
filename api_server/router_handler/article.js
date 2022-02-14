@@ -107,7 +107,7 @@ exports.updateArticleById = (req, res) => {
       // SQL 语句执行成功，但是影响行数不等于 1
       if (results.affectedRows !== 1) return res.cc('更新文章分类失败！')
       // 更新文章分类成功
-      res.cc('更新文章分类成功！')
+      res.cc('更新文章分类成功！',0)
     })
 
   })

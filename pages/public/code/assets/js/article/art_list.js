@@ -130,7 +130,7 @@ $(function() {
 
   $('tbody').on('click', '.btn-edit', function(e) {
     // console.log(1);
- 
+
   })
   // 通过代理的形式，为删除按钮绑定点击事件处理函数
   $('tbody').on('click', '.btn-delete', function() {
@@ -165,4 +165,35 @@ $(function() {
       layer.close(index)
     })
   })
+
+  // 通过代理的形式，为 btn-edit 按钮绑定点击事件
+  var indexEdit = null
+  $('tbody').on('click', '.btn-edit', function() {
+    var id = $(this).attr('data-id')
+    // console.log(id);
+    // TODO：跳转页面并修改信息
+    href = '../article/art_edit.html'+'?id='+id
+    location.href = href
+
+    // indexEdit = layer.open({
+    //   // content: $('#dialog-edit').html(),
+    //   type: 1,
+    //   area: ['1000px', '600px'],
+    //   title: '修改文章',
+    //   content: $('#article-edit').html()
+
+    // })
+    // // 初始化富文本编辑器
+    // initEditor()
+    $.ajax({
+      method: 'GET',
+      url: '/my/article/' + id,
+      success: function(res) {
+        console.log(res);
+        // form.val('form-edit', res.data)
+      }
+    })
+  })
+  // 发起请求获取对应分类的数据
+
 })

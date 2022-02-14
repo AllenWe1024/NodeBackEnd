@@ -6,7 +6,7 @@ $(function() {
   initCate()
   // 初始化富文本编辑器
   initEditor()
-
+  // 定义alias
   // 定义加载文章分类的方法
   function initCate() {
     $.ajax({
@@ -17,6 +17,7 @@ $(function() {
           return layer.msg('初始化文章分类失败！')
         }
         // 调用模板引擎，渲染分类的下拉菜单
+        // console.log(res);
         var htmlStr = template('tpl-cate', res)
         $('[name=cate_id]').html(htmlStr)
         // 一定要记得调用 form.render() 方法
@@ -68,18 +69,65 @@ $(function() {
     art_state = '草稿'
   })
 
+
+  //获取跳转url中的参数
+  function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]); return null; //返回参数值
+  }
+
+  // 发起请求获取对应分类的数据
+  // console.log(location.href);
+  // 获取id
+  var id = getUrlParam("id")
+  // console.log(id);
+  $.ajax({
+    method: 'GET',
+    url: '/my/article/' + id,
+    success: function(res) {
+      // console.log(res.data);
+      // form.val('form-edit', res.data)
+      // form渲染数据
+      form.val('form-pub', res.data)
+      // console.log(res.data);
+      // console.log(res.data.cover_img);
+
+      // u1=window.URL.createObjectURL(res.data.cover_img)
+      // console.log(u1);
+      // $('#image').attr('src','letsrun.plus:10003')
+      // form.render()
+      // TODO：图片显示
+
+    }
+  })
+
+
   // 为表单绑定 submit 提交事件
   $('#form-pub').on('submit', function(e) {
     // 1. 阻止表单的默认提交行为
     e.preventDefault()
     // 2. 基于 form 表单，快速创建一个 FormData 对象
+    // var fd1 = $(this)[0]
+    // delete fd1.author_id
+    // console.log(fd1);
+
     var fd = new FormData($(this)[0]) //[0]转化为原生DOM
     // fd.forEach(function(v, k) {
     //   console.log(v, k);
     // })
     // 3. 将文章的发布状态，存到 fd 中
     fd.append('state', art_state)
+
+
+    // fd.delete('author_id')
+    // fd.delete('author_id')
+    // fd.delete('author_id')
+
+
+    // console.log(fd.values);
     // 4. 将封面裁剪过后的图片，输出为一个文件对象
+    
     $image
       .cropper('getCroppedCanvas', {
         // 创建一个 Canvas 画布
@@ -91,16 +139,22 @@ $(function() {
         // 得到文件对象后，进行后续的操作
         // 5. 将文件对象，存储到 fd 中
         fd.append('cover_img', blob)
+        // 追加Id
+        fd.append('Id', id)
+        // for (var [key, value] of fd) {
+        //   console.log(key, value);
+        //   }
         // 6. 发起 ajax 数据请求
-        publishArticle(fd)
+        editArticle(fd)
       })
   })
 
+
   // 定义一个发布文章的方法
-  function publishArticle(fd) {
+  function editArticle(fd) {
     $.ajax({
       method: 'POST',
-      url: '/my/article/add',
+      url: '/my/article/edit',
       data: fd,
       // 注意：如果向服务器提交的是 FormData 格式的数据，
       // 必须添加以下两个配置项
@@ -108,12 +162,15 @@ $(function() {
       processData: false,
       success: function(res) {
         if (res.status !== 0) {
-          return layer.msg('发布文章失败！')
+          // console.log(res)
+          return layer.msg('修改文章失败！')
         }
-        layer.msg('发布文章成功！')
+        layer.msg('修改文章成功！')
         // 发布文章成功后，跳转到文章列表页面
         location.href = '../article/art_list.html'
       }
     })
   }
+
+
 })
