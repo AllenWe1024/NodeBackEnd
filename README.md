@@ -1,11 +1,13 @@
 基于node.js的后台管理系统
 
+主页地址：http://letsrun.plus:10001
+
 测试账号：admin1
 
 测试密码：admin1
 
 # 概况
-项目的请求根路径为 http://letsrun.plus:10003
+后台接口的请求根路径为 http://letsrun.plus:10003
 
 以 /api 开头的请求路径，不需要访问权限
 
