@@ -40,7 +40,7 @@ $(function () {
       username: $('#form_reg [name=username]').val(),
       password: $('#form_reg [name=password]').val()
     }
-    $.post('http://api-breakingnews-web.itheima.net/api/reguser', data, function (res) {
+    $.post('/api/reguser', data, function (res) {
       // console.log(2);
       if (res.status !== 0) {
         return layer.msg(res.message);
