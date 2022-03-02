@@ -92,6 +92,7 @@ app.use(function(err, req, res, next) {
 })
 
 // 调用 app.listen 方法，指定端口号并启动web服务器
-app.listen(10003, function() {
-  console.log('api server running at http://127.0.0.1:10003')
+app.listen(10004, function() {
+  console.log('api server running at http://127.0.0.1:10004')
 })
+

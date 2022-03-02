@@ -2,13 +2,12 @@ const express = require('express')
 const app = express()
 const port = 80
 
-app.use(express.static('public',{index:"login.html"}))
+app.use(express.static('public'))
 
-// console.log(__dirname+"/public/login.html");
-
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + "/public/login.html");
-// })
+app.get('/', (req, res) => {
+  // console.log(__dirname);
+  res.sendFile("./login.html");
+})
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
