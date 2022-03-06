@@ -1,13 +1,13 @@
-$(function () {
+$(function() {
   // 调用 getUserInfo 获取用户基本信息
   getUserInfo()
 
   // 获取layer
   var layer = layui.layer
 
-  $('#btnLogout').on('click', function () {
+  $('#btnLogout').on('click', function() {
     // console.log('ok');
-    layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function (index) {
+    layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function(index) {
       //do something
       // 1. 清空本地存储中的 token
       localStorage.removeItem('token')
@@ -25,7 +25,7 @@ function getUserInfo() {
   $.ajax({
     method: 'GET',
     url: '/my/userinfo',
-    success: function (res) {
+    success: function(res) {
       if (res.status !== 0) {
         return layui.layer.msg('获取用户信息失败！')
       }
@@ -62,7 +62,7 @@ function renderAvatar(user) {
     $('.layui-nav-img')
       .attr('src', user.user_pic)
       .show()
-      $('.text-avatar').hide()
+    $('.text-avatar').hide()
 
     // 3.2 渲染文本头像
   } else {
