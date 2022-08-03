@@ -8,7 +8,7 @@ const express = require('express');
 const app = express();
 
 // HOST 指目标地址 PORT 服务端口
-const HOST = 'http://localhost', PORT = '10001';
+const HOST = 'https://localhost', PORT = '10001';
 
 // 超时时间
 // const TIME_OUT = 30 * 1e3;
