@@ -1,6 +1,6 @@
 ## Headline
 
-> 大事件后台 API 项目，API 接口文档请参考 https://www.showdoc.cc/escook?page_id=3707158761215217
+> 参考 https://www.showdoc.cc/escook?page_id=3707158761215217
 
 ## 1. 初始化
 
@@ -1635,3 +1635,9 @@ db.query(sql, articleInfo, (err, results) => {
 // 托管静态资源文件
 app.use('/uploads', express.static('./uploads'))
 ```
+
+
+
+test
+
+![image-20220805152346326](node.js后台管理系统-后端设计.assets/image-20220805152346326.png)
