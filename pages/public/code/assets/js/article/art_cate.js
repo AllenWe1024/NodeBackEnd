@@ -5,7 +5,7 @@ $(function() {
 
   initArtCateList()
 
-  // 获取文章分类的列表
+  // 获取Case分类的列表
   function initArtCateList() {
     $.ajax({
       method: 'GET',
@@ -27,7 +27,7 @@ $(function() {
       // 改成页面层
       type: 1,
       area: ['500px', '250px'],
-      title: '添加文章分类',
+      title: '添加Case分类',
       // 用jQuery选择.html内容，复制到content
       content: $('#dialog-add').html()
     })
@@ -55,11 +55,11 @@ $(function() {
   // 通过代理的形式，为 btn-edit 按钮绑定点击事件
   var indexEdit = null
   $('tbody').on('click', '.btn-edit', function() {
-    // 弹出一个修改文章分类信息的层
+    // 弹出一个修改Case分类信息的层
     indexEdit = layer.open({
       type: 1,
       area: ['500px', '250px'],
-      title: '修改文章分类',
+      title: '修改Case分类',
       content: $('#dialog-edit').html()
     })
     // console.log('ok');

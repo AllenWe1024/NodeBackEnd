@@ -13,20 +13,20 @@
 <body>
   <!-- 卡片区域 -->
   <div class="layui-card">
-    <div class="layui-card-header">编辑文章</div>
+    <div class="layui-card-header">编辑Case</div>
     <div class="layui-card-body">
-      <!-- 发布文章的表单 -->
+      <!-- 发布Case的表单 -->
       <form class="layui-form" id="form-pub" lay-filter="form-pub">
         <!-- 第一行 -->
         <div class="layui-form-item">
-          <label class="layui-form-label ">文章标题</label>
+          <label class="layui-form-label ">Case标题</label>
           <div class="layui-input-block">
             <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" id="articleTitle" class="layui-input" />
           </div>
         </div>
         <!-- 第二行 -->
         <div class="layui-form-item">
-          <label class="layui-form-label">文章类别</label>
+          <label class="layui-form-label">Case类别</label>
           <div class="layui-input-block">
             <select name="cate_id" lay-verify="required"></select>
           </div>
@@ -34,7 +34,7 @@
         <!-- 第三行 -->
         <div class="layui-form-item">
           <!-- 左侧的 label -->
-          <label class="layui-form-label">文章内容</label>
+          <label class="layui-form-label">Case内容</label>
           <!-- 为富文本编辑器外部的容器设置高度 -->
           <div class="layui-input-block" style="height: 400px;">
             <!-- 重要：将来这个 textarea 会被初始化为富文本编辑器 -->
@@ -44,7 +44,7 @@
         <!-- 第四行 -->
         <div class="layui-form-item">
           <!-- 左侧的 label -->
-          <label class="layui-form-label">文章封面</label>
+          <label class="layui-form-label">Case封面</label>
           <!-- 选择封面区域 -->
           <div class="layui-input-block cover-box">
             <!-- 左侧裁剪区域 -->
@@ -77,7 +77,7 @@
 
   <!-- 分类的模板结构 -->
   <script type="text/html" id="tpl-cate">
-      <option value="">请选择文章类别</option>
+      <option value="">请选择Case类别</option>
       {{each data}}
       <option value="{{$value.Id}}">{{$value.name}}</option>
       {{/each}}
